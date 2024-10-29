@@ -47,8 +47,7 @@ function submitForm() {
         </template>
 
 
-
-
+   
 
 
         
@@ -72,22 +71,24 @@ function submitForm() {
 
 
 
-            <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div class="bg-white rounded-lg p-6 shadow-lg w-full max-w-md mx-auto z-50">
-            <h3 class="text-lg font-medium">Agregar Nuevo Producto</h3>
+           <slot name="title">Agregar Producto</slot> 
             <form @submit.prevent="submitForm">
-              <div class="mt-4">
-                <label class="block text-sm font-medium text-gray-700">Nombre</label>
-                <input v-model="form.nombre" type="text" class="w-full px-4 py-2 border rounded-lg" />
-              </div>
-              <div class="mt-4">
-                <label class="block text-sm font-medium text-gray-700">Precio</label>
-                <input v-model="form.precio" type="number" class="w-full px-4 py-2 border rounded-lg" />
-              </div>
-              <div class="flex justify-end mt-6">
-                <button type="button" @click="isModalOpen = false" class="px-4 py-2 bg-gray-500 text-white rounded-lg mr-2">Cancelar</button>
-                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Guardar</button>
-              </div>
+            <slot name="content">
+                <div class="mt-4">
+                    <label class="block text-sm font-medium text-gray-700">Nombre</label>
+                    <input v-model="form.nombre" type="text" class="w-full px-4 py-2 border rounded-lg" />
+                </div>
+                <div class="mt-4">
+                    <label class="block text-sm font-medium text-gray-700">Precio</label>
+                    <input v-model="form.precio" type="number" class="w-full px-4 py-2 border rounded-lg" />
+                </div>
+                <div class="flex justify-end mt-6">
+                    <button type="button" @click="isModalOpen = false" class="px-4 py-2 bg-gray-500 text-white rounded-lg mr-2">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Guardar</button>
+                </div>
+            </slot>
             </form>
           </div>
         </div>
